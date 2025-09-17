@@ -1,0 +1,193 @@
+//Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAIN_ICON           ICON                    "LOGO.png"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAIN_MENU MENU
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                     ID_FILE_EXIT
+    END
+    POPUP "编辑(&E)"
+    BEGIN
+        MENUITEM "搜索(&S)\tCtrl+F",             ID_EDIT_SEARCH
+        MENUITEM "刷新(&R)\tF5",                 ID_EDIT_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "全选(&A)\tCtrl+A",             ID_EDIT_SELECT_ALL
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "显示系统组件(&S)",             ID_VIEW_SYSTEM_COMPONENTS
+        MENUITEM "详细信息(&D)",                 ID_VIEW_DETAILS
+    END
+    POPUP "工具(&T)"
+    BEGIN
+        MENUITEM "卸载(&U)\tDel",               ID_TOOLS_UNINSTALL
+        MENUITEM "强制卸载(&F)\tShift+Del",      ID_TOOLS_FORCE_UNINSTALL
+        MENUITEM "深度清理(&D)",                 ID_TOOLS_DEEP_CLEAN
+        MENUITEM SEPARATOR
+        MENUITEM "选项(&O)...",                  ID_TOOLS_OPTIONS
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 YG Uninstaller(&A)...",  ID_HELP_ABOUT
+    END
+END
+
+IDR_CONTEXT_MENU MENU
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "卸载",                         ID_CM_UNINSTALL
+        MENUITEM "强制卸载",                     ID_CM_FORCE_UNINSTALL
+        MENUITEM SEPARATOR
+        MENUITEM "属性",                         ID_CM_PROPERTIES
+        MENUITEM "打开安装位置",                 ID_CM_OPEN_LOCATION
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS
+BEGIN
+    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_SEARCH,         VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_TOOLS_UNINSTALL,     VIRTKEY, NOINVERT
+    VK_DELETE,      ID_TOOLS_FORCE_UNINSTALL, VIRTKEY, SHIFT, NOINVERT
+    VK_F5,          ID_EDIT_REFRESH,        VIRTKEY, NOINVERT
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 300, 200
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 YG Uninstaller"
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    ICON            IDI_MAIN_ICON,IDC_STATIC,14,14,20,20
+    LTEXT           "YG Uninstaller",IDC_STATIC,50,14,120,8,SS_NOPREFIX
+    LTEXT           "版本 1.0.0",IDC_STATIC,50,26,120,8
+    LTEXT           "高效的Windows程序卸载工具",IDC_STATIC,50,38,150,8
+    LTEXT           "",IDC_STATIC,14,60,272,1,SS_ETCHEDHORZ
+    LTEXT           "Copyright (c) 2025 YG Software",IDC_STATIC,14,70,150,8
+    LTEXT           "保留所有权利。",IDC_STATIC,14,82,100,8
+    LTEXT           "",IDC_STATIC,14,100,272,1,SS_ETCHEDHORZ
+    LTEXT           "特性：",IDC_STATIC,14,110,30,8
+    LTEXT           "• 轻量级设计，启动速度快",IDC_STATIC,24,122,150,8
+    LTEXT           "• 深度扫描，彻底清理残留",IDC_STATIC,24,134,150,8
+    LTEXT           "• 支持强制卸载顽固程序",IDC_STATIC,24,146,150,8
+    LTEXT           "• 安全可靠的错误处理机制",IDC_STATIC,24,158,150,8
+    DEFPUSHBUTTON   "确定",IDOK,243,179,50,14
+END
+
+IDD_PROGRESS DIALOGEX 0, 0, 300, 80
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "正在处理..."
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "正在扫描已安装的程序...",IDC_STATUS_TEXT,14,14,272,8
+    CONTROL         "",IDC_PROGRESS_BAR,"msctls_progress32",WS_BORDER,14,30,272,14
+    PUSHBUTTON      "取消",IDCANCEL,125,59,50,14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_APP_TITLE           "YG Uninstaller"
+    IDS_MAIN_WINDOW_CLASS   "YGUninstallerMainWindow"
+    IDS_COLUMN_NAME         "程序名称"
+    IDS_COLUMN_VERSION      "版本"
+    IDS_COLUMN_PUBLISHER    "发布者"
+    IDS_COLUMN_SIZE         "大小"
+    IDS_COLUMN_INSTALL_DATE "安装日期"
+    IDS_STATUS_READY        "就绪"
+    IDS_STATUS_SCANNING     "正在扫描..."
+    IDS_STATUS_UNINSTALLING "正在卸载..."
+    IDS_CONFIRM_UNINSTALL   "确定要卸载选中的程序吗？"
+    IDS_CONFIRM_FORCE_UNINSTALL "确定要强制卸载选中的程序吗？\n\n注意：强制卸载可能导致系统不稳定。"
+    IDS_UNINSTALL_SUCCESS   "卸载完成"
+    IDS_UNINSTALL_FAILED    "卸载失败"
+    IDS_ERROR_NO_SELECTION  "请先选择要卸载的程序。"
+    IDS_ERROR_ADMIN_REQUIRED "此操作需要管理员权限。"
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
