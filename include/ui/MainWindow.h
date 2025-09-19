@@ -81,6 +81,25 @@ namespace YG {
         void UninstallSelectedProgram(UninstallMode mode = UninstallMode::Standard);
         
         /**
+         * @brief 批量卸载选中的程序
+         * @param mode 卸载模式
+         */
+        void BatchUninstallSelectedPrograms(UninstallMode mode = UninstallMode::Standard);
+        
+        /**
+         * @brief 获取所有选中的程序
+         * @param programs 输出选中的程序列表
+         * @return int 选中程序的数量
+         */
+        int GetSelectedPrograms(std::vector<ProgramInfo>& programs);
+        
+        /**
+         * @brief 全选/取消全选程序
+         * @param selectAll 是否全选
+         */
+        void SelectAllPrograms(bool selectAll);
+        
+        /**
          * @brief 显示程序详细信息
          * @param program 程序信息
          */
@@ -187,6 +206,41 @@ namespace YG {
         ErrorCode CreateMenus();
         
         /**
+         * @brief 创建菜单栏搜索控件
+         */
+        void CreateMenuBarSearchControls();
+        
+        /**
+         * @brief 创建系统托盘图标
+         */
+        void CreateSystemTray();
+        
+        /**
+         * @brief 显示/隐藏系统托盘图标
+         */
+        void ShowSystemTray(bool show);
+        
+        /**
+         * @brief 处理系统托盘消息
+         */
+        void OnTrayNotify(WPARAM wParam, LPARAM lParam);
+        
+        /**
+         * @brief 最小化到托盘
+         */
+        void MinimizeToTray();
+        
+        /**
+         * @brief 从托盘恢复窗口
+         */
+        void RestoreFromTray();
+        
+        /**
+         * @brief 显示设置对话框
+         */
+        void ShowSettingsDialog();
+        
+        /**
          * @brief 创建工具栏
          * @return ErrorCode 操作结果
          */
@@ -208,6 +262,17 @@ namespace YG {
          * @brief 初始化列表视图列
          */
         void InitializeListViewColumns();
+        
+        /**
+         * @brief 调整列表视图列宽以适应窗口宽度
+         */
+        void AdjustListViewColumns();
+        
+        /**
+         * @brief 计算5列表格的精确宽度
+         * @return int 5列表格的总宽度
+         */
+        int CalculateTableWidth();
         
         /**
          * @brief 填充程序列表
@@ -286,9 +351,85 @@ namespace YG {
         bool ShowConfirmation(const String& title, const String& message);
         
         /**
+         * @brief 格式化文件大小
+         * @param sizeInBytes 字节大小
+         * @return String 格式化后的大小字符串
+         */
+        String FormatFileSize(DWORD64 sizeInBytes);
+        
+        /**
+         * @brief 格式化安装日期
+         * @param dateString 日期字符串 (YYYY-MM-DD 格式)
+         * @return String 格式化后的日期字符串 (M/d/yyyy 格式)
+         */
+        String FormatInstallDate(const String& dateString);
+        
+        /**
+         * @brief 添加测试程序数据
+         */
+        void AddTestPrograms();
+        
+        /**
          * @brief 添加示例程序数据
          */
         void AddSamplePrograms();
+        
+        /**
+         * @brief 排序程序列表
+         * @param column 排序列索引
+         * @param ascending 是否升序
+         */
+        void SortProgramList(int column, bool ascending);
+        
+        /**
+         * @brief 处理列标题点击事件
+         * @param column 点击的列索引
+         */
+        void OnColumnHeaderClick(int column);
+        
+        /**
+         * @brief 比较两个程序信息
+         * @param program1 程序1
+         * @param program2 程序2
+         * @param column 比较列
+         * @param ascending 是否升序
+         * @return int 比较结果
+         */
+        static int CompareProgramInfo(const ProgramInfo& program1, const ProgramInfo& program2, int column, bool ascending);
+        
+        /**
+         * @brief 创建图标列表
+         * @return ErrorCode 操作结果
+         */
+        ErrorCode CreateImageList();
+        
+        /**
+         * @brief 提取程序图标
+         * @param program 程序信息
+         * @return int 图标在ImageList中的索引，-1表示失败
+         */
+        int ExtractProgramIcon(const ProgramInfo& program);
+        
+        /**
+         * @brief 获取默认程序图标
+         * @return int 默认图标在ImageList中的索引
+         */
+        int GetDefaultProgramIcon();
+        
+        /**
+         * @brief 去除程序列表中的重复项
+         * @param programs 程序列表
+         * @return std::vector<ProgramInfo> 去重后的程序列表
+         */
+        std::vector<ProgramInfo> RemoveDuplicatePrograms(const std::vector<ProgramInfo>& programs);
+        
+        /**
+         * @brief 判断两个程序是否相同
+         * @param program1 程序1
+         * @param program2 程序2
+         * @return bool 是否为同一程序
+         */
+        bool IsSameProgram(const ProgramInfo& program1, const ProgramInfo& program2);
         
     private:
         // 窗口相关
@@ -301,12 +442,20 @@ namespace YG {
         HWND m_hToolbar;                ///< 工具栏句柄
         HWND m_hStatusBar;              ///< 状态栏句柄
         HWND m_hListView;               ///< 列表视图句柄
+        
         HWND m_hSearchEdit;             ///< 搜索框句柄
         HWND m_hProgressBar;            ///< 进度条句柄
         
-        // 服务对象（暂时注释掉，避免链接错误）
-        // std::unique_ptr<ProgramDetector> m_programDetector;     ///< 程序检测器
-        // std::unique_ptr<UninstallerService> m_uninstallerService; ///< 卸载服务
+        // 图标相关
+        HIMAGELIST m_hImageList;        ///< 图标列表句柄
+        
+        // 系统托盘相关
+        NOTIFYICONDATAW m_nid;          ///< 系统托盘图标数据
+        bool m_isInTray;                ///< 是否在托盘中
+        
+        // 服务对象
+        std::unique_ptr<ProgramDetector> m_programDetector;  ///< 程序检测器
+        std::unique_ptr<UninstallerService> m_uninstallerService; ///< 卸载服务
         
         // 数据
         std::vector<ProgramInfo> m_programs;        ///< 程序列表
@@ -317,7 +466,12 @@ namespace YG {
         // 状态
         bool m_isScanning;                          ///< 是否正在扫描
         bool m_isUninstalling;                      ///< 是否正在卸载
+        bool m_isListViewMode;                      ///< 是否使用ListView表格模式
         String m_currentUninstallTask;              ///< 当前卸载任务ID
+        
+        // 排序相关
+        int m_sortColumn;                           ///< 当前排序列
+        bool m_sortAscending;                       ///< 是否升序排序
         
         // 窗口类名和标题
         static constexpr const wchar_t* WINDOW_CLASS_NAME = L"YGUninstallerMainWindow";

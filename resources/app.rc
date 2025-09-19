@@ -7,7 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "winres.h"
+#include <windows.h>
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -17,7 +17,7 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
-#pragma code_page(936)
+#pragma code_page(65001)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -26,7 +26,21 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_MAIN_ICON           ICON                    "LOGO.png"
+IDI_MAIN_ICON           ICON                    "logo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Manifest
+//
+
+1                       RT_MANIFEST             "app.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version Info
+//
+
+#include "version.rc"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -39,28 +53,38 @@ BEGIN
     BEGIN
         MENUITEM "退出(&X)",                     ID_FILE_EXIT
     END
-    POPUP "编辑(&E)"
+    POPUP "操作(&A)"
     BEGIN
-        MENUITEM "搜索(&S)\tCtrl+F",             ID_EDIT_SEARCH
-        MENUITEM "刷新(&R)\tF5",                 ID_EDIT_REFRESH
+        MENUITEM "刷新程序列表(&R)\tF5",         ID_ACTION_REFRESH
         MENUITEM SEPARATOR
-        MENUITEM "全选(&A)\tCtrl+A",             ID_EDIT_SELECT_ALL
+        MENUITEM "卸载程序(&U)\tDel",           ID_ACTION_UNINSTALL
+        MENUITEM "强制卸载(&F)\tShift+Del",      ID_ACTION_FORCE_UNINSTALL
+        MENUITEM SEPARATOR
+        MENUITEM "属性(&P)\tAlt+Enter",         ID_ACTION_PROPERTIES
+        MENUITEM "打开安装位置(&O)\tCtrl+O",     ID_ACTION_OPEN_LOCATION
     END
     POPUP "查看(&V)"
     BEGIN
-        MENUITEM "显示系统组件(&S)",             ID_VIEW_SYSTEM_COMPONENTS
-        MENUITEM "详细信息(&D)",                 ID_VIEW_DETAILS
-    END
-    POPUP "工具(&T)"
-    BEGIN
-        MENUITEM "卸载(&U)\tDel",               ID_TOOLS_UNINSTALL
-        MENUITEM "强制卸载(&F)\tShift+Del",      ID_TOOLS_FORCE_UNINSTALL
-        MENUITEM "深度清理(&D)",                 ID_TOOLS_DEEP_CLEAN
+        MENUITEM "工具栏(&T)",                   ID_VIEW_TOOLBAR, CHECKED
+        MENUITEM "状态栏(&S)",                   ID_VIEW_STATUSBAR, CHECKED
         MENUITEM SEPARATOR
-        MENUITEM "选项(&O)...",                  ID_TOOLS_OPTIONS
+        MENUITEM "刷新(&R)\tF5",                 ID_VIEW_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "大图标(&L)",                   ID_VIEW_LARGE_ICONS
+        MENUITEM "小图标(&M)",                   ID_VIEW_SMALL_ICONS
+        MENUITEM "列表(&I)",                     ID_VIEW_LIST, CHECKED
+        MENUITEM "详细信息(&D)",                 ID_VIEW_DETAILS
+        MENUITEM SEPARATOR
+        MENUITEM "显示系统组件(&C)",             ID_VIEW_SHOW_SYSTEM
+        MENUITEM "显示Windows更新(&W)",          ID_VIEW_SHOW_UPDATES
     END
     POPUP "帮助(&H)"
     BEGIN
+        MENUITEM "帮助主题(&H)\tF1",             ID_HELP_HELP
+        MENUITEM SEPARATOR
+        MENUITEM "访问官网(&W)",                 ID_HELP_WEBSITE
+        MENUITEM "检查更新(&U)",                 ID_HELP_CHECK_UPDATE
+        MENUITEM SEPARATOR
         MENUITEM "关于 YG Uninstaller(&A)...",  ID_HELP_ABOUT
     END
 END
@@ -84,11 +108,11 @@ END
 
 IDR_ACCELERATOR ACCELERATORS
 BEGIN
-    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
-    "F",            ID_EDIT_SEARCH,         VIRTKEY, CONTROL, NOINVERT
-    VK_DELETE,      ID_TOOLS_UNINSTALL,     VIRTKEY, NOINVERT
-    VK_DELETE,      ID_TOOLS_FORCE_UNINSTALL, VIRTKEY, SHIFT, NOINVERT
-    VK_F5,          ID_EDIT_REFRESH,        VIRTKEY, NOINVERT
+    "A",            ID_ACTION_UNINSTALL,     VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_ACTION_PROPERTIES,    VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_ACTION_UNINSTALL,     VIRTKEY, NOINVERT
+    VK_DELETE,      ID_ACTION_FORCE_UNINSTALL, VIRTKEY, SHIFT, NOINVERT
+    VK_F5,          ID_ACTION_REFRESH,       VIRTKEY, NOINVERT
 END
 
 /////////////////////////////////////////////////////////////////////////////
@@ -106,7 +130,7 @@ BEGIN
     LTEXT           "版本 1.0.0",IDC_STATIC,50,26,120,8
     LTEXT           "高效的Windows程序卸载工具",IDC_STATIC,50,38,150,8
     LTEXT           "",IDC_STATIC,14,60,272,1,SS_ETCHEDHORZ
-    LTEXT           "Copyright (c) 2025 YG Software",IDC_STATIC,14,70,150,8
+    LTEXT           "Copyright (c) 2025 gmrchzh@gmail.com",IDC_STATIC,14,70,180,8
     LTEXT           "保留所有权利。",IDC_STATIC,14,82,100,8
     LTEXT           "",IDC_STATIC,14,100,272,1,SS_ETCHEDHORZ
     LTEXT           "特性：",IDC_STATIC,14,110,30,8
@@ -168,7 +192,7 @@ END
 
 2 TEXTINCLUDE 
 BEGIN
-    "#include ""winres.h""\r\n"
+    "#include <windows.h>\r\n"
     "\0"
 END
 

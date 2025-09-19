@@ -1,7 +1,7 @@
 /**
  * @file Config.cpp
  * @brief 配置管理类实现
- * @author YG Software
+ * @author gmrchzh@gmail.com
  * @version 1.0.0
  * @date 2025-09-17
  */

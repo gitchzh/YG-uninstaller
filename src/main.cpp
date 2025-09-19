@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @brief 应用程序入口点
- * @author YG Software
+ * @author gmrchzh@gmail.com
  * @version 1.0.0
  * @date 2025-09-17
  */
@@ -42,16 +42,22 @@ ErrorCode InitializeApplication() {
         return ErrorCode::GeneralError;
     }
     
-    // 初始化公共控件
+    // 初始化公共控件 - 使用更简单的方法
+    InitCommonControls();
+    
+    // 然后使用扩展初始化
     INITCOMMONCONTROLSEX icex;
     icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
     icex.dwICC = ICC_LISTVIEW_CLASSES | ICC_TREEVIEW_CLASSES | ICC_BAR_CLASSES | 
-                 ICC_TAB_CLASSES | ICC_PROGRESS_CLASS | ICC_COOL_CLASSES;
+                 ICC_TAB_CLASSES | ICC_PROGRESS_CLASS | ICC_COOL_CLASSES |
+                 ICC_WIN95_CLASSES | ICC_STANDARD_CLASSES;
     
-    if (!InitCommonControlsEx(&icex)) {
-        YG_LOG_ERROR(L"公共控件初始化失败");
-        CoUninitialize();
-        return ErrorCode::GeneralError;
+    BOOL initResult = InitCommonControlsEx(&icex);
+    YG_LOG_INFO(L"公共控件初始化结果: " + std::to_wstring(initResult));
+    
+    if (!initResult) {
+        YG_LOG_WARNING(L"扩展公共控件初始化失败，但继续运行");
+        // 不要因为这个失败就退出程序
     }
     
     // 初始化日志系统
@@ -152,7 +158,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance,
         }
         
         // 创建主窗口
-        auto mainWindow = std::make_unique<MainWindow>();
+        auto mainWindow = YG::MakeUnique<MainWindow>();
         ErrorCode createResult = mainWindow->Create(hInstance);
         if (createResult != ErrorCode::Success) {
             YG_LOG_FATAL(L"主窗口创建失败");

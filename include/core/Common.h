@@ -41,6 +41,9 @@ namespace YG {
         FileNotFound = 4,
         RegistryError = 5,
         NetworkError = 6,
+        DataNotFound = 7,
+        OperationInProgress = 8,
+        OperationCancelled = 9,
         UnknownError = 99
     };
     
@@ -78,9 +81,14 @@ namespace YG {
     template<typename T>
     using SharedPtr = std::shared_ptr<T>;
     
+    // C++11兼容的make_unique实现
     template<typename T, typename... Args>
     UniquePtr<T> MakeUnique(Args&&... args) {
+#if __cplusplus >= 201402L
         return std::make_unique<T>(std::forward<Args>(args)...);
+#else
+        return UniquePtr<T>(new T(std::forward<Args>(args)...));
+#endif
     }
     
     template<typename T, typename... Args>

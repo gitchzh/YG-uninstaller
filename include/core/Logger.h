@@ -207,7 +207,7 @@ namespace YG {
     private:
         LogLevel m_level;              ///< 当前日志级别
         String m_logFilePath;          ///< 日志文件路径
-        std::wofstream m_fileStream;   ///< 文件输出流
+        std::ofstream m_fileStream;    ///< 文件输出流（使用UTF-8）
         mutable std::mutex m_mutex;    ///< 线程安全锁
         bool m_consoleOutput;          ///< 是否输出到控制台
         bool m_fileOutput;             ///< 是否输出到文件
