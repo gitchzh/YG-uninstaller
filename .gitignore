@@ -1,0 +1,72 @@
+# 编译输出
+output/
+*.exe
+*.dll
+*.lib
+*.a
+
+# 编译临时文件
+*.o
+*.obj
+*.tmp
+*.temp
+
+# 备份文件
+*.bak
+*.old
+*.backup
+
+# 日志文件
+*.log
+logs/
+
+# IDE和编辑器文件
+.vs/
+.vscode/
+*.suo
+*.user
+*.ncb
+*.aps
+*.plg
+*.opt
+*.clw
+*.tags
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Python缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 测试相关
+.coverage
+.pytest_cache/
+.tox/
+.nox/
+
+# 临时目录
+temp/
+tmp/

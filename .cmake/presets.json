@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "mingw-x64",
+      "displayName": "MinGW x64 (Release)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-mingw-x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+        "OUTPUT_SUBDIR": "x64"
+      }
+    },
+    {
+      "name": "mingw-x86",
+      "displayName": "MinGW x86 (Release)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-mingw-x86",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "i686-w64-mingw32-gcc",
+        "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
+        "OUTPUT_SUBDIR": "x86"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build-x64",
+      "configurePreset": "mingw-x64",
+      "configuration": "Release"
+    },
+    {
+      "name": "build-x86",
+      "configurePreset": "mingw-x86",
+      "configuration": "Release"
+    },
+    {
+      "name": "build-all",
+      "configurePreset": "mingw-x64",
+      "configuration": "Release",
+      "inheritConfigureEnvironment": true,
+      "jobs": 0
+    }
+  ]
+}
+

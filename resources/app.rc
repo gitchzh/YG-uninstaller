@@ -1,0 +1,339 @@
+//Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include <windows.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(65001)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAIN_ICON           ICON                    "logo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Manifest
+//
+
+1                       RT_MANIFEST             "app.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version Info
+//
+
+#include "version.rc"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAIN_MENU MENU
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                     ID_FILE_EXIT
+    END
+    POPUP "操作(&A)"
+    BEGIN
+        MENUITEM "刷新程序列表(&R)\tF5",         ID_ACTION_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "卸载程序(&U)\tDel",           ID_ACTION_UNINSTALL
+        MENUITEM "强制卸载(&F)\tShift+Del",      ID_ACTION_FORCE_UNINSTALL
+        MENUITEM SEPARATOR
+        MENUITEM "属性(&P)\tAlt+Enter",         ID_ACTION_PROPERTIES
+        MENUITEM "打开安装位置(&O)\tCtrl+O",     ID_ACTION_OPEN_LOCATION
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                   ID_VIEW_TOOLBAR, CHECKED
+        MENUITEM "状态栏(&S)",                   ID_VIEW_STATUSBAR, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "刷新(&R)\tF5",                 ID_VIEW_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "大图标(&L)",                   ID_VIEW_LARGE_ICONS
+        MENUITEM "小图标(&M)",                   ID_VIEW_SMALL_ICONS
+        MENUITEM "列表(&I)",                     ID_VIEW_LIST, CHECKED
+        MENUITEM "详细信息(&D)",                 ID_VIEW_DETAILS
+        MENUITEM SEPARATOR
+        MENUITEM "显示系统组件(&C)",             ID_VIEW_SHOW_SYSTEM
+        MENUITEM "显示Windows更新(&W)",          ID_VIEW_SHOW_UPDATES
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "帮助主题(&H)\tF1",             ID_HELP_HELP
+        MENUITEM SEPARATOR
+        MENUITEM "访问官网(&W)",                 ID_HELP_WEBSITE
+        MENUITEM "检查更新(&U)",                 ID_HELP_CHECK_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "关于 YG Uninstaller(&A)...",  ID_HELP_ABOUT
+    END
+END
+
+IDR_CONTEXT_MENU MENU
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "卸载",                         ID_CM_UNINSTALL
+        MENUITEM "强制卸载",                     ID_CM_FORCE_UNINSTALL
+        MENUITEM SEPARATOR
+        MENUITEM "属性",                         ID_CM_PROPERTIES
+        MENUITEM "打开安装位置",                 ID_CM_OPEN_LOCATION
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS
+BEGIN
+    "A",            ID_ACTION_UNINSTALL,     VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_ACTION_PROPERTIES,    VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_ACTION_UNINSTALL,     VIRTKEY, NOINVERT
+    VK_DELETE,      ID_ACTION_FORCE_UNINSTALL, VIRTKEY, SHIFT, NOINVERT
+    VK_F5,          ID_ACTION_REFRESH,       VIRTKEY, NOINVERT
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 300, 200
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 YG Uninstaller"
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    ICON            IDI_MAIN_ICON,IDC_STATIC,14,14,20,20
+    LTEXT           "YG Uninstaller",IDC_STATIC,50,14,120,8,SS_NOPREFIX
+    LTEXT           "版本 1.0.1",IDC_STATIC,50,26,120,8
+    LTEXT           "高效的Windows程序卸载工具",IDC_STATIC,50,38,150,8
+    LTEXT           "",IDC_STATIC,14,60,272,1,SS_ETCHEDHORZ
+    LTEXT           "Copyright (c) 2025 gmrchzh@gmail.com",IDC_STATIC,14,70,180,8
+    LTEXT           "保留所有权利。",IDC_STATIC,14,82,100,8
+    LTEXT           "",IDC_STATIC,14,100,272,1,SS_ETCHEDHORZ
+    LTEXT           "特性：",IDC_STATIC,14,110,30,8
+    LTEXT           "• 轻量级设计，启动速度快",IDC_STATIC,24,122,150,8
+    LTEXT           "• 深度扫描，彻底清理残留",IDC_STATIC,24,134,150,8
+    LTEXT           "• 支持强制卸载顽固程序",IDC_STATIC,24,146,150,8
+    LTEXT           "• 安全可靠的错误处理机制",IDC_STATIC,24,158,150,8
+    DEFPUSHBUTTON   "确定",IDOK,243,179,50,14
+END
+
+// 常规设置对话框
+IDD_SETTINGS_GENERAL DIALOGEX 0, 0, 400, 300
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "常规设置"
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "扫描设置",IDC_STATIC,14,14,372,80
+    CONTROL         "启动时自动扫描程序",IDC_CHECK_AUTO_SCAN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,30,120,10
+    CONTROL         "包含系统组件",IDC_CHECK_SYSTEM_COMPONENTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,46,100,10
+    CONTROL         "显示Windows更新",IDC_CHECK_WINDOWS_UPDATES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,62,120,10
+    CONTROL         "显示隐藏程序",IDC_CHECK_HIDDEN_PROGRAMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,78,100,10
+    
+    GROUPBOX        "界面设置",IDC_STATIC,14,104,372,80
+    LTEXT           "默认视图模式:",IDC_STATIC,24,120,80,8
+    COMBOBOX        IDC_COMBO_VIEW_MODE,110,118,100,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "启动时最小化到托盘",IDC_CHECK_START_MINIMIZED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,140,120,10
+    CONTROL         "关闭时最小化到托盘",IDC_CHECK_CLOSE_TO_TRAY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,156,120,10
+    
+    GROUPBOX        "卸载设置",IDC_STATIC,14,194,372,60
+    CONTROL         "卸载前显示确认对话框",IDC_CHECK_CONFIRM_UNINSTALL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,210,140,10
+    CONTROL         "卸载后自动刷新列表",IDC_CHECK_AUTO_REFRESH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,226,120,10
+    CONTROL         "保留卸载日志",IDC_CHECK_KEEP_LOGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,242,100,10
+    
+    DEFPUSHBUTTON   "确定",IDOK,290,270,50,14
+    PUSHBUTTON      "取消",IDCANCEL,346,270,50,14
+END
+
+// 高级设置对话框
+IDD_SETTINGS_ADVANCED DIALOGEX 0, 0, 420, 350
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "高级设置"
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "深度清理设置",IDC_STATIC,14,14,392,80
+    CONTROL         "启用深度清理模式",IDC_CHECK_DEEP_CLEAN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,30,120,10
+    CONTROL         "清理注册表残留",IDC_CHECK_CLEAN_REGISTRY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,46,120,10
+    CONTROL         "清理程序文件夹",IDC_CHECK_CLEAN_FOLDERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,62,120,10
+    CONTROL         "清理开始菜单项",IDC_CHECK_CLEAN_STARTMENU,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,78,120,10
+    
+    GROUPBOX        "安全设置",IDC_STATIC,14,104,392,60
+    CONTROL         "创建系统还原点",IDC_CHECK_CREATE_RESTORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,120,120,10
+    CONTROL         "备份注册表修改",IDC_CHECK_BACKUP_REGISTRY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,136,120,10
+    CONTROL         "验证数字签名",IDC_CHECK_VERIFY_SIGNATURE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,152,120,10
+    
+    GROUPBOX        "性能设置",IDC_STATIC,14,174,392,80
+    LTEXT           "扫描线程数:",IDC_STATIC,24,190,80,8
+    COMBOBOX        IDC_COMBO_THREAD_COUNT,110,188,60,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "缓存大小(MB):",IDC_STATIC,24,210,80,8
+    EDITTEXT        IDC_EDIT_CACHE_SIZE,110,208,60,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "启用多线程扫描",IDC_CHECK_MULTI_THREAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,230,120,10
+    
+    GROUPBOX        "日志设置",IDC_STATIC,14,264,392,60
+    LTEXT           "日志级别:",IDC_STATIC,24,280,60,8
+    COMBOBOX        IDC_COMBO_LOG_LEVEL,90,278,80,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "启用详细日志",IDC_CHECK_VERBOSE_LOG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,300,100,10
+    PUSHBUTTON      "清理日志",IDC_BUTTON_CLEAR_LOGS,320,296,70,14
+    
+    DEFPUSHBUTTON   "确定",IDOK,310,330,50,14
+    PUSHBUTTON      "取消",IDCANCEL,366,330,50,14
+END
+
+IDD_PROGRESS DIALOGEX 0, 0, 300, 80
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "正在处理..."
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "正在扫描已安装的程序...",IDC_STATUS_TEXT,14,14,272,8
+    CONTROL         "",IDC_PROGRESS_BAR,"msctls_progress32",WS_BORDER,14,30,272,14
+    PUSHBUTTON      "取消",IDCANCEL,125,59,50,14
+END
+
+// 设置对话框 - 全新简洁设计
+IDD_SETTINGS_TABBED DIALOGEX 0, 0, 333, 250
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "设置"
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    
+    // 启动设置组
+    GROUPBOX        "启动设置",IDC_STATIC,14,14,150,80
+    CONTROL         "启动时自动扫描程序",IDC_CHECK_AUTO_SCAN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,29,130,10
+    CONTROL         "显示隐藏程序",IDC_CHECK_HIDDEN_PROGRAMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,44,130,10
+    CONTROL         "启动时最小化",IDC_CHECK_START_MINIMIZED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,59,130,10
+    CONTROL         "关闭时最小化到托盘",IDC_CHECK_CLOSE_TO_TRAY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,74,130,10
+    
+    // 操作设置组
+    GROUPBOX        "操作设置",IDC_STATIC,169,14,150,80
+    CONTROL         "卸载前确认",IDC_CHECK_CONFIRM_UNINSTALL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,179,29,130,10
+    CONTROL         "卸载后自动刷新",IDC_CHECK_AUTO_REFRESH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,179,44,130,10
+    CONTROL         "保留卸载日志",IDC_CHECK_KEEP_LOGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,179,59,130,10
+    CONTROL         "显示系统组件",IDC_CHECK_SYSTEM_COMPONENTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,179,74,130,10
+    
+    // 高级设置组
+    GROUPBOX        "高级设置",IDC_STATIC,14,104,305,50
+    CONTROL         "启用多线程扫描",IDC_CHECK_MULTI_THREAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,119,120,10
+    CONTROL         "详细日志记录",IDC_CHECK_VERBOSE_LOG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,134,120,10
+    LTEXT           "扫描线程数:",IDC_STATIC,150,121,60,8
+    COMBOBOX        IDC_COMBO_THREAD_COUNT,215,119,40,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "日志级别:",IDC_STATIC,150,136,60,8
+    COMBOBOX        IDC_COMBO_LOG_LEVEL,215,134,40,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    
+    // 操作按钮组
+    GROUPBOX        "操作",IDC_STATIC,14,164,305,40
+    PUSHBUTTON      "重置为默认",IDC_BUTTON_RESET_DEFAULT,24,179,70,16
+    PUSHBUTTON      "导出设置",IDC_BUTTON_EXPORT_SETTINGS,100,179,70,16
+    PUSHBUTTON      "导入设置",IDC_BUTTON_IMPORT_SETTINGS,176,179,70,16
+    PUSHBUTTON      "清理日志文件",IDC_BUTTON_CLEAR_LOGS,252,179,60,16
+    
+    // 对话框按钮
+    DEFPUSHBUTTON   "确定",IDOK,220,230,50,14
+    PUSHBUTTON      "取消",IDCANCEL,275,230,50,14
+END
+
+// 日志管理对话框
+IDD_LOG_MANAGER DIALOGEX 0, 0, 333, 250
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "日志管理"
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "日志管理 - 查看和删除程序日志文件",IDC_STATIC_LOG_INFO,14,14,300,8
+    CONTROL         "",IDC_LOG_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,14,30,305,140
+    
+    GROUPBOX        "操作",IDC_STATIC,14,180,305,40
+    PUSHBUTTON      "查看日志",IDC_BUTTON_VIEW_LOG,24,195,60,16
+    PUSHBUTTON      "删除日志",IDC_BUTTON_DELETE_LOG,90,195,60,16
+    PUSHBUTTON      "清空所有日志",IDC_BUTTON_CLEAR_ALL_LOGS,156,195,80,16
+    PUSHBUTTON      "刷新",IDC_BUTTON_REFRESH_LOGS,242,195,50,16
+    
+    DEFPUSHBUTTON   "确定",IDOK,220,230,50,14
+    PUSHBUTTON      "取消",IDCANCEL,275,230,50,14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_APP_TITLE           "YG Uninstaller"
+    IDS_MAIN_WINDOW_CLASS   "YGUninstallerMainWindow"
+    IDS_COLUMN_NAME         "程序名称"
+    IDS_COLUMN_VERSION      "版本"
+    IDS_COLUMN_PUBLISHER    "发布者"
+    IDS_COLUMN_SIZE         "大小"
+    IDS_COLUMN_INSTALL_DATE "安装日期"
+    IDS_STATUS_READY        "就绪"
+    IDS_STATUS_SCANNING     "正在扫描..."
+    IDS_STATUS_UNINSTALLING "正在卸载..."
+    IDS_CONFIRM_UNINSTALL   "确定要卸载选中的程序吗？"
+    IDS_CONFIRM_FORCE_UNINSTALL "确定要强制卸载选中的程序吗？\n\n注意：强制卸载可能导致系统不稳定。"
+    IDS_UNINSTALL_SUCCESS   "卸载完成"
+    IDS_UNINSTALL_FAILED    "卸载失败"
+    IDS_ERROR_NO_SELECTION  "请先选择要卸载的程序。"
+    IDS_ERROR_ADMIN_REQUIRED "此操作需要管理员权限。"
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include <windows.h>\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
